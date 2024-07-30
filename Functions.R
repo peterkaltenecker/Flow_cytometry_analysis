@@ -1,4 +1,7 @@
-# Function to create UMAPs for comparison
+###################################################################
+# Function to create UMAPs for batch effect correction evaluation #
+###################################################################
+
 # This function uses the uncorrected and corrected flowsets
 # If n_samples is drastically decreased might consider increasing marker_alpha for better visibility of the plots
 
