@@ -13,3 +13,5 @@ The main libraries, packages that are used in the current workflow are as follow
 - [FlowSOM](https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html) for clustering, [link for paper](https://doi.org/10.1002/cyto.a.22625)
 
 Other packages, such as *umap*, *patchwork* and *Biobase*, are also used by some specific functions.
+
+For learning flow cytometry data handling, cleaning, compensation, gating, transformation and basic plotting in R, I recommend this [tutorial](https://github.com/hally166/R_flowcytometry_course) from Christopher Hall and the following [page](https://med.virginia.edu/flow-cytometry-facility/resources/r-script/).
