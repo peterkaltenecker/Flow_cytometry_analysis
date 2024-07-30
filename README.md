@@ -14,6 +14,15 @@ The main libraries, packages that are used in the current workflow are as follow
 
 The documentation, vignettes and other information of these packages can be found on the above links. Other packages, such as *umap*, *patchwork* and *Biobase*, are also used by some specific functions.
 
+### Useful information
+
 For learning flow cytometry data handling, cleaning, compensation, gating, transformation and basic plotting in R, I recommend this [tutorial](https://github.com/hally166/R_flowcytometry_course) from Christopher Hall and the following [page](https://med.virginia.edu/flow-cytometry-facility/resources/r-script/).
+
+Setting an appropiate value of cofactor for the asinh, or inverse hyperbolic sine, transformation is a crucial step. The following sources may help to figure it out: 
+[1.](https://cytoforum.stanford.edu/viewtopic.php?f=3&t=1498) 
+[2.](https://github.com/maxentile/advanced-ml-project/issues/2) 
+[3.](https://www.researchgate.net/figure/Selecting-the-optimal-value-of-cofactor-using-flowScape-The-distributions-of-CompControl_fig2_224915947)
+
+For batch effect correction, you will need some additional metadata files (metadata_cC.xlsx and panel_cC.xlsx) when reading *your data into the right format*. Examples of how to prepare these files are shown in *....pdf*.
 
 To convert the output of batch effect correction into a flowFrame with the *save_as_ff* function, I utilized some code from Yann Abraham: [link to the original](https://gist.github.com/yannabraham/c1f9de9b23fb94105ca5). Alternatively, the output could be saved as a .csv file and then converted into a .fcs file for which [this](https://floreada.io/fcscreate) might be a useful tool.
