@@ -18,7 +18,7 @@ The documentation, vignettes and other information of these packages can be foun
 
 For learning flow cytometry data handling, cleaning, compensation, gating, transformation and basic plotting in R, I recommend this [tutorial](https://github.com/hally166/R_flowcytometry_course) from Christopher Hall and the following [page](https://med.virginia.edu/flow-cytometry-facility/resources/r-script/).
 
-Marker expression data needs to be transformed before batch effect correction for which the asinh, or inverse hyperbolic sine, transformation is applied in this workflow. Setting an appropiate value of cofactor for the transformation is a crucial step. The following sources may help to figure out what cofactor to use: 
+Marker expression data needs to be transformed before batch effect correction for which the asinh, or inverse hyperbolic sine, transformation is applied in this workflow. Setting an appropriate value of cofactor for the transformation is a crucial step. The following sources may help to figure out what cofactor to use: 
 [1.](https://cytoforum.stanford.edu/viewtopic.php?f=3&t=1498) 
 [2.](https://github.com/maxentile/advanced-ml-project/issues/2) 
 [3.](https://www.researchgate.net/figure/Selecting-the-optimal-value-of-cofactor-using-flowScape-The-distributions-of-CompControl_fig2_224915947)
