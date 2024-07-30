@@ -5,9 +5,10 @@ The goal of this repository is to compile a basic data analysis workflow of flow
 3. clustering
 
 The main libraries, packages that are used in the current workflow are as follows:
-- tidyverse
-- FlowCore for handling of flow cytometry data
-- [FlowAI](https://www.bioconductor.org/packages/release/bioc/html/flowAI.html) for quality control
+- [Tidyverse](https://www.tidyverse.org)
+- [FlowCore](https://bioconductor.org/packages/release/bioc/html/flowCore.html) for handling of flow cytometry data,
+  [link for paper](https://doi.org/10.1186/1471-2105-10-106)
+- [FlowAI](https://www.bioconductor.org/packages/release/bioc/html/flowAI.html) for quality control, [link for paper](https://doi.org/10.1093/bioinformatics/btw191)
 - [cyCombine](https://github.com/biosurf/cyCombine) for batch effect correction, [link for paper](https://doi.org/10.1038/s41467-022-29383-5)
 - [FlowSOM](https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html) for clustering, [link for paper](https://doi.org/10.1002/cyto.a.22625)
 
