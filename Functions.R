@@ -95,3 +95,58 @@ plot_batches_UMAP <- function(uncorr, corr, markers,
   print("Plots are saved.")
   print("DONE!")
 }
+
+
+############################################################################
+# Function to convert the result of batch effect correction to a flowFrame #
+############################################################################
+
+# to save batches as separate flowFrames set separate_batches to True
+
+save_as_ff <- function(corr, markers, separate_batches = F) {
+  library(Biobase)
+  library(flowCore)
+  
+  if (separate_batches == T) {
+    library(tidyverse)
+    print("flowFrames are creating...")
+    
+    batchIDs <- unique(corr$batch) # to get batch IDs
+    for (n in batchIDs) {
+      # select the corrected data for the actual batch and the markers of interest
+      dta <- corr %>% 
+        filter(batch == n)
+      dta <- dta[, markers]
+      
+      # prepare metadata (required for creating a flowframe)
+      meta <- data.frame(name=dimnames(dta)[[2]],
+                         desc=paste(dimnames(dta)[[2]],'marker'))
+      meta$range <- apply(apply(dta,2,range),2,diff)
+      meta$minRange <- apply(dta,2,min)
+      meta$maxRange <- apply(dta,2,max)
+      
+      # create a flowframe with the data and metadata
+      ff_temp <- new("flowFrame",
+                     exprs=data.matrix(dta),
+                     parameters=AnnotatedDataFrame(meta))
+      assign(paste0("ff_corrected_batch", n), ff_temp, envir = .GlobalEnv) 
+    }
+  } else {
+    print("flowFrame is creating...")
+    # select the corrected data for the markers of interest
+    dta <- corr[, markers]
+    
+    # prepare metadata
+    meta <- data.frame(name=dimnames(dta)[[2]],
+                       desc=paste(dimnames(dta)[[2]],'marker'))
+    meta$range <- apply(apply(dta,2,range),2,diff)
+    meta$minRange <- apply(dta,2,min)
+    meta$maxRange <- apply(dta,2,max)
+    
+    # create a flowframe with the data and metadata
+    ff_corrected <<- new("flowFrame",
+                         exprs=data.matrix(dta),
+                         parameters=AnnotatedDataFrame(meta))
+  }
+  print("DONE!")
+}
