@@ -192,5 +192,28 @@ plot_fSOM_results <- function(fSOM, markers, res = 300) {
     PlotMarker(fSOM, m)
     ggsave(paste0("flowSOMresults_MST_", m, ".jpg"), dpi = res)
   }
+  
+  # get and reorganize data for heatmap
+  htm_data <- GetMetaclusterMFIs(fSOM)
+  htm_data <- round(htm_data, digits = 2)
+  htm_data <- rownames_to_column(htm_data, var = "cluster")
+  
+  # plot heatmap
+  htm_data %>% 
+    pivot_longer(cols = !cluster, names_to = "marker", values_to = "MFI") %>% 
+    ggplot(aes(x = marker, y = cluster, fill = MFI, label = MFI)) +
+    geom_tile() +
+    geom_text() +
+    scale_fill_gradientn(colours = c("darkblue", "blue", "cyan1", "springgreen",
+                                     "yellow", "red", "darkred")) +
+    labs(x = "Marker",
+         y = "Cluster",
+         title = "Median fluorescence intensity") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          panel.grid = element_blank(),
+          aspect.ratio = 1)
+  ggsave("flowSOMresults_heatmap.jpg", dpi = res)
+  
   print("DONE!")
 }
