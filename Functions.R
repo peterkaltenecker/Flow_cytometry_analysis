@@ -150,3 +150,47 @@ save_as_ff <- function(corr, markers, separate_batches = F) {
   }
   print("DONE!")
 }
+
+
+#########################################################
+# Function to create essential plots of FlowSOM results #
+#########################################################
+
+# the res parameter sets the resolution for the saved files in dpi
+
+plot_fSOM_results <- function(fSOM, markers, res = 300) {
+  library(tidyverse)
+  library(FlowSOM)
+  
+  # plot the Minimal Spanning Tree (MST)
+  PlotStars(fSOM,
+            backgroundValues = fSOM$metaclustering,
+            equalNodeSize = T,
+            view = "MST")
+  ggsave("flowSOMresults_MST.jpg", dpi = res)
+  
+  # plot the MST with representative node sizes
+  PlotStars(fSOM,
+            backgroundValues = fSOM$metaclustering,
+            equalNodeSize = F,
+            view = "MST")
+  ggsave("flowSOMresults_MST2.jpg", dpi = res)
+  
+  # plot the grid representation
+  PlotStars(fSOM,
+            backgroundValues = fSOM$metaclustering,
+            equalNodeSize = F,
+            view = "grid")
+  ggsave("flowSOMresults_grid.jpg", dpi = res)
+  
+  # labels for the MST
+  PlotLabels(fSOM, labels = fSOM$metaclustering)
+  ggsave("flowSOMresults_clusterLabels.jpg", dpi = res)
+  
+  # plot the markers on the MST
+  for (m in markers) {
+    PlotMarker(fSOM, m)
+    ggsave(paste0("flowSOMresults_MST_", m, ".jpg"), dpi = res)
+  }
+  print("DONE!")
+}
