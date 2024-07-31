@@ -23,6 +23,6 @@ Marker expression data needs to be transformed before batch effect correction fo
 [2.](https://github.com/maxentile/advanced-ml-project/issues/2) 
 [3.](https://www.researchgate.net/figure/Selecting-the-optimal-value-of-cofactor-using-flowScape-The-distributions-of-CompControl_fig2_224915947)
 
-For batch effect correction, you will need some additional metadata files (metadata_cC.xlsx and panel_cC.xlsx) when reading *your data into the right format*. Examples of how to prepare these files are shown in *....pdf*.
+cyCombine requires the data as a tibble to work with, therefore .fcs files or flowSets have to be converted for which some additional metadata files (metadata_cC.xlsx and panel_cC.xlsx) are needed. Examples of how to prepare these files are shown in the *metadata_preparation_for_cyCombine.pdf*. For more information please see the [Reference manual](https://biosurf.org/cyCombine_ref_manual.html) of cyCombine.
 
 To convert the output of batch effect correction into a flowFrame with the *save_as_ff* function, I utilized some code from Yann Abraham: [link to the original](https://gist.github.com/yannabraham/c1f9de9b23fb94105ca5). Alternatively, the output could be saved as a .csv file and then converted into a .fcs file for which [this](https://floreada.io/fcscreate) might be a useful tool.
