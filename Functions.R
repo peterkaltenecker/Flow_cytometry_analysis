@@ -2,8 +2,8 @@
 # Function to create UMAPs for batch effect correction evaluation #
 ###################################################################
 
-# This function uses the uncorrected and corrected flowsets
-# If n_samples is drastically decreased might consider increasing marker_alpha for better visibility of the plots
+# this function uses the uncorrected and corrected flowsets
+# if n_samples is drastically decreased might consider increasing marker_alpha for better visibility of the plots
 
 plot_batches_UMAP <- function(uncorr, corr, markers, 
                               n_samples = 50000, 
@@ -147,6 +147,66 @@ save_as_ff <- function(corr, markers, separate_batches = F) {
     ff_corrected <<- new("flowFrame",
                          exprs=data.matrix(dta),
                          parameters=AnnotatedDataFrame(meta))
+  }
+  print("DONE!")
+}
+
+
+############################################################################
+# Function to convert the result of batch effect correction to a .fcs file #
+############################################################################
+
+# to save batches as separate .fcs files set separate_batches to True
+
+save_as_fcs <- function(corr, markers, separate_batches = F) {
+  library(Biobase)
+  library(flowCore)
+  
+  if (separate_batches == T) {
+    library(tidyverse)
+    print("FCS files are creating...")
+    
+    batchIDs <- unique(corr$batch) # to get batch IDs
+    for (n in batchIDs) {
+      # select the corrected data for the actual batch and the markers of interest
+      dta <- corr %>% 
+        dplyr::filter(batch == n)
+      dta <- dta[, markers]
+      
+      # prepare metadata (required for creating a flowFrame)
+      meta <- data.frame(name=dimnames(dta)[[2]],
+                         desc=paste(dimnames(dta)[[2]],'marker'))
+      meta$range <- apply(apply(dta,2,range),2,diff)
+      meta$minRange <- apply(dta,2,min)
+      meta$maxRange <- apply(dta,2,max)
+      
+      # create a flowFrame with the data and metadata
+      ff_temp <- new("flowFrame",
+                     exprs=data.matrix(dta),
+                     parameters=AnnotatedDataFrame(meta))
+      
+      # save flowFrame as a .fcs file
+      write.FCS(ff_temp, paste0("corrected_batch", n, ".fcs"))
+    }
+  } else {
+    print("FCS file is creating...")
+    # select the corrected data for the markers of interest
+    dta <- corr[, markers]
+    
+    # prepare metadata
+    meta <- data.frame(name=dimnames(dta)[[2]],
+                       desc=paste(dimnames(dta)[[2]],'marker'))
+    meta$range <- apply(apply(dta,2,range),2,diff)
+    meta$minRange <- apply(dta,2,min)
+    meta$maxRange <- apply(dta,2,max)
+    
+    # create a flowFrame with the data and metadata
+    ff_temp <- new("flowFrame",
+                   exprs=data.matrix(dta),
+                   parameters=AnnotatedDataFrame(meta))
+    
+    # save flowFrame as a .fcs file
+    write.FCS(ff_temp, "corrected.fcs")
   }
   print("DONE!")
 }
