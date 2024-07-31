@@ -115,17 +115,17 @@ save_as_ff <- function(corr, markers, separate_batches = F) {
     for (n in batchIDs) {
       # select the corrected data for the actual batch and the markers of interest
       dta <- corr %>% 
-        filter(batch == n)
+        dplyr::filter(batch == n)
       dta <- dta[, markers]
       
-      # prepare metadata (required for creating a flowframe)
+      # prepare metadata (required for creating a flowFrame)
       meta <- data.frame(name=dimnames(dta)[[2]],
                          desc=paste(dimnames(dta)[[2]],'marker'))
       meta$range <- apply(apply(dta,2,range),2,diff)
       meta$minRange <- apply(dta,2,min)
       meta$maxRange <- apply(dta,2,max)
       
-      # create a flowframe with the data and metadata
+      # create a flowFrame with the data and metadata
       ff_temp <- new("flowFrame",
                      exprs=data.matrix(dta),
                      parameters=AnnotatedDataFrame(meta))
@@ -143,7 +143,7 @@ save_as_ff <- function(corr, markers, separate_batches = F) {
     meta$minRange <- apply(dta,2,min)
     meta$maxRange <- apply(dta,2,max)
     
-    # create a flowframe with the data and metadata
+    # create a flowFrame with the data and metadata
     ff_corrected <<- new("flowFrame",
                          exprs=data.matrix(dta),
                          parameters=AnnotatedDataFrame(meta))
