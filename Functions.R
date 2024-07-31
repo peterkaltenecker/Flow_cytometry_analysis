@@ -215,5 +215,22 @@ plot_fSOM_results <- function(fSOM, markers, res = 300) {
           aspect.ratio = 1)
   ggsave("flowSOMresults_heatmap.jpg", dpi = res)
   
+  # get cell number per cluster
+  nCell <- as.data.frame(GetCounts(fSOM))
+  nCell <- rownames_to_column(nCell, var = "cluster")
+  
+  # plot cell number per cluster
+  nCell %>%
+    ggplot(aes(x = cluster, y = GetCounts(fSOM))) +
+    geom_col(fill = "#79dbc0") +
+    labs(x = "Cluster",
+         y = "Count",
+         title = "Number of cells per (meta)cluster") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          legend.position = "NULL",
+          aspect.ratio = 1)
+  ggsave("flowSOMresults_cellCount.jpg", dpi = res)
+  
   print("DONE!")
 }
