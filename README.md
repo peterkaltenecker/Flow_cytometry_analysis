@@ -13,7 +13,8 @@ The main libraries, packages that are used in the current workflow are as follow
 - [FlowSOM](https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html) for clustering, [link for paper](https://doi.org/10.1002/cyto.a.22625)
 
 The documentation, vignettes and other information of these packages can be found on the above links. Other packages, such as *umap*, *patchwork* and *Biobase*, are also used by some specific functions.
-
+<br>
+<br>
 ### Useful information
 
 For learning flow cytometry data handling, cleaning, compensation, gating, transformation and basic plotting in R, I recommend this [tutorial](https://github.com/hally166/R_flowcytometry_course) from Christopher Hall and the following [page](https://med.virginia.edu/flow-cytometry-facility/resources/r-script/).
@@ -25,4 +26,4 @@ Marker expression data needs to be transformed before batch effect correction fo
 
 cyCombine requires the data as a tibble to work with, therefore .fcs files or flowSets have to be converted for which some additional metadata files (metadata_cC.xlsx and panel_cC.xlsx) are needed. Examples of how to prepare these files are shown in the *metadata_preparation_for_cyCombine.pdf*. For more information please see the [Reference manual](https://biosurf.org/cyCombine_ref_manual.html) of cyCombine.
 
-To convert the output of batch effect correction into a flowFrame with the *save_as_ff* function, I utilized some code from Yann Abraham: [link to the original](https://gist.github.com/yannabraham/c1f9de9b23fb94105ca5). Alternatively, the output could be saved as a .csv file and then converted into a .fcs file for which [this](https://floreada.io/fcscreate) might be a useful tool.
+To convert the output of batch effect correction into a flowFrame with the *save_as_ff* function, or into a .fcs file with the *save_as_fcs* function, I utilized some code from Yann Abraham: [link to the original](https://gist.github.com/yannabraham/c1f9de9b23fb94105ca5). Alternatively, the output could be saved as a .csv file and then converted into a .fcs file for which [this](https://floreada.io/fcscreate) might be a useful tool.
