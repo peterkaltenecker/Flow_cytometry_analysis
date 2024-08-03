@@ -1,5 +1,5 @@
 ## Flow cytometry data analysis
-The goal of this repository is to compile a basic data analysis workflow of flow cytometry data that can be used by others in our research lab, or by anyone else, for:
+The goal for this repository is to compile a basic data analysis workflow of flow cytometry data that can be used by others in our research lab, or by anyone else, for:
 1. anomalous event detection and removal
 2. batch effect correction
 3. clustering
