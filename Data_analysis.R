@@ -12,8 +12,8 @@ library(FlowSOM)
 ################################
 
 # import a .fcs file into a flowframe (ff) to work with
-# place file in the working directory and define file name in double quotes 
-ff <- flowCore::read.FCS("STATIC_FULL_1.fcs",
+# place file in the working directory and define file name 
+ff <- flowCore::read.FCS("actual_file.fcs",
                          transformation = F)
 
 # several parameters of a ff can be explored
@@ -43,8 +43,8 @@ flow_iQC()
 ################################
 
 # .fcs files can be imported into one flowset (fs) to make handling easier
-# define file path (in double quotes) to the directory where files are stored
-file_path = "C:/Users/peti/Documents/flow_cytometry_workflow"
+# define file path to the directory where files are stored
+file_path = "C:/.../working_directory"
 files <- list.files(path = file_path, pattern = ".fcs$")
 fs <- read.flowSet(files, path = file_path, 
                    transformation = F)
