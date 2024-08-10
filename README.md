@@ -12,7 +12,7 @@ The main libraries, packages that are used in the current workflow are as follow
 - [cyCombine](https://github.com/biosurf/cyCombine) for batch effect correction, [link for paper](https://doi.org/10.1038/s41467-022-29383-5)
 - [FlowSOM](https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html) for clustering, [link for paper](https://doi.org/10.1002/cyto.a.22625)
 
-The documentation, vignettes and other information of these packages can be found on the above links. Other packages, such as *umap*, *patchwork* and *Biobase*, are also used by some specific functions.
+The documentation, vignettes and other information of these packages can be found on the above links. Other packages, such as [umap](https://cran.r-project.org/web/packages/umap/index.html), [patchwork](https://cran.r-project.org/web/packages/patchwork/index.html) and [Biobase](https://bioconductor.org/packages/release/bioc/html/Biobase.html), are also used by some specific functions.
 <br>
 <br>
 ### Useful information
