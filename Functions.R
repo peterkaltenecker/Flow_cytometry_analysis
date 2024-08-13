@@ -22,17 +22,17 @@ plot_batches_UMAP <- function(uncorr, corr, markers,
   print("UMAPs are being made. It might take some time...")
   
   # UMAPs
-  uncorr.umap <- umap(uncorr_ds[, markers])
+  uncorr_umap <- umap(uncorr_ds[, markers])
   print("UMAP for the uncorrected data is done...")
-  corr.umap <- umap(corr_ds[, markers])
+  corr_umap <- umap(corr_ds[, markers])
   print("All UMAPs are done.")
   print("Plots are being created...")
   
   # create dataframes for plotting
-  uncorr_df <- data.frame(uncorr.umap$layout)
+  uncorr_df <- data.frame(uncorr_umap$layout)
   uncorr_df <- cbind(uncorr_df, batch = uncorr_ds$batch)
   
-  corr_df <- data.frame(corr.umap$layout)
+  corr_df <- data.frame(corr_umap$layout)
   corr_df <- cbind(corr_df, batch = corr_ds$batch)
   
   #plots
