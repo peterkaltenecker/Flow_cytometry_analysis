@@ -123,9 +123,9 @@ detect_batch_effect(uncorrected,
 # a larger grid creates more clusters and a finer separation of cell groups
 # rlen shows the number of times the data is presented to the SOM network
 labels <- uncorrected %>% 
-  normalize(markers = markers,
-            norm_method = "scale",   # can also be "rank" for stronger correction
-            ties.method = "average") %>%   # can also be "minimum"
+  cyCombine::normalize(markers = markers,
+                       norm_method = "scale",   # can also be "rank" for stronger correction
+                       ties.method = "average") %>%   # can also be "minimum"
   create_som(markers = markers,
              rlen = 10,   # higher values may lead to better results
              seed = 101,
