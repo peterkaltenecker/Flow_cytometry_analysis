@@ -4,6 +4,10 @@ library(flowAI)
 library(cyCombine)
 library(FlowSOM)
 
+# download the Functions.R file and place it in the working directory
+# import the functions
+source("Functions.R")
+
 # The data used here was preprocessed in FlowJo: ...
 
 
