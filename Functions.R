@@ -101,21 +101,21 @@ plot_batches_UMAP <- function(uncorr, corr, markers,
 # Function to convert the result of batch effect correction to a flowFrame #
 ############################################################################
 
-# to save batches as separate flowFrames set separate_batches to True
+# to save samples as separate flowFrames set separate_samples to True
 
-save_as_ff <- function(corr, markers, separate_batches = F) {
+save_as_ff <- function(corr, markers, separate_samples = F) {
   library(Biobase)
   library(flowCore)
   
-  if (separate_batches == T) {
+  if (separate_samples == T) {
     library(tidyverse)
     print("flowFrames are creating...")
     
-    batchIDs <- unique(corr$batch) # to get batch IDs
-    for (n in batchIDs) {
-      # select the corrected data for the actual batch and the markers of interest
+    sample_names <- unique(corr$sample) # to get sample names
+    for (n in sample_names) {
+      # select the corrected data for the actual sample and the markers of interest
       dta <- corr %>% 
-        dplyr::filter(batch == n)
+        dplyr::filter(sample == n)
       dta <- dta[, markers]
       
       # prepare metadata (required for creating a flowFrame)
@@ -129,7 +129,7 @@ save_as_ff <- function(corr, markers, separate_batches = F) {
       ff_temp <- new("flowFrame",
                      exprs=data.matrix(dta),
                      parameters=AnnotatedDataFrame(meta))
-      assign(paste0("ff_corrected_batch", n), ff_temp, envir = .GlobalEnv) 
+      assign(paste0("ff_corrected_", n), ff_temp, envir = .GlobalEnv) 
     }
   } else {
     print("flowFrame is creating...")
