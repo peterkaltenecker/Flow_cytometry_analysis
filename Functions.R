@@ -156,21 +156,20 @@ save_as_ff <- function(corr, markers, separate_samples = F) {
 # Function to convert the result of batch effect correction to a .fcs file #
 ############################################################################
 
-# to save batches as separate .fcs files set separate_batches to True
+# to save samples as separate .fcs files set separate_samples to True
 
-save_as_fcs <- function(corr, markers, separate_batches = F) {
+save_as_fcs <- function(corr, markers, separate_samples = F) {
   library(Biobase)
   library(flowCore)
   
-  if (separate_batches == T) {
+  if (separate_samples == T) {
     library(tidyverse)
     print("FCS files are creating...")
     
-    batchIDs <- unique(corr$batch) # to get batch IDs
-    for (n in batchIDs) {
-      # select the corrected data for the actual batch and the markers of interest
-      dta <- corr %>% 
-        dplyr::filter(batch == n)
+    sample_names <- unique(corr$sample) # to get sample names
+    for (n in sample_names) {
+      # select the corrected data for the actual sample and the markers of interest
+      dta <- corr %>% dplyr::filter(sample == n)
       dta <- dta[, markers]
       
       # prepare metadata (required for creating a flowFrame)
@@ -186,7 +185,7 @@ save_as_fcs <- function(corr, markers, separate_batches = F) {
                      parameters=AnnotatedDataFrame(meta))
       
       # save flowFrame as a .fcs file
-      write.FCS(ff_temp, paste0("corrected_batch", n, ".fcs"))
+      write.FCS(ff_temp, paste0("corrected_", n, ".fcs"))
     }
   } else {
     print("FCS file is creating...")
