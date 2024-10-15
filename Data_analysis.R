@@ -159,12 +159,12 @@ plot_density(uncorrected,
 # to save batches as separate ff-s set separate_batches to True
 # output: ff_corrected or ff_corrected_batchx/y/z
 save_as_ff(corrected, markers)
-save_as_ff(corrected, markers, separate_batches = T)
+save_as_ff(corrected, markers, separate_samples = T)
 
 # alternatively, results can be saved as .fcs files as well
 # output: corrected.fcs or corrected_batchx/y/z.fcs
 save_as_fcs(corrected, markers)
-save_as_fcs(corrected, markers, separate_batches = T)
+save_as_fcs(corrected, markers, separate_samples = T)
 
 
 ###########################
