@@ -156,13 +156,13 @@ plot_density(uncorrected,
              ncol = 3)   # should be equal to the number of markers
 
 # convert the results of batch correction into a ff
-# to save batches as separate ff-s set separate_batches to True
-# output: ff_corrected or ff_corrected_batchx/y/z
+# to save samples as separate ff-s set separate_samples to True
+# output: ff_corrected or ff_corrected_sample_name
 save_as_ff(corrected, markers)
 save_as_ff(corrected, markers, separate_samples = T)
 
 # alternatively, results can be saved as .fcs files as well
-# output: corrected.fcs or corrected_batchx/y/z.fcs
+# output: corrected.fcs or corrected_sample_name.fcs
 save_as_fcs(corrected, markers)
 save_as_fcs(corrected, markers, separate_samples = T)
 
