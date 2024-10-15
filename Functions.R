@@ -114,8 +114,7 @@ save_as_ff <- function(corr, markers, separate_samples = F) {
     sample_names <- unique(corr$sample) # to get sample names
     for (n in sample_names) {
       # select the corrected data for the actual sample and the markers of interest
-      dta <- corr %>% 
-        dplyr::filter(sample == n)
+      dta <- corr %>% dplyr::filter(sample == n)
       dta <- dta[, markers]
       
       # prepare metadata (required for creating a flowFrame)
