@@ -156,7 +156,7 @@ plot_density(uncorrected,
              ncol = 3)   # should be equal to the number of markers
 
 # scale the batch corrected data (CD27, IgD and CD38 markers)
-# if markers are different ranges it might be a necessary step
+# if markers are in different ranges, it might be a necessary step
 corrected_sc <- corrected
 corrected_sc$CD27 <- scale(corrected_sc$CD27)
 corrected_sc$IgD <- scale(corrected_sc$IgD)
