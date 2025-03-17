@@ -155,16 +155,23 @@ plot_density(uncorrected,
              y = "batch",
              ncol = 3)   # should be equal to the number of markers
 
+# scale the batch corrected data (CD27, IgD and CD38 markers)
+# if markers are different ranges it might be a necessary step
+corrected_sc <- corrected
+corrected_sc$CD27 <- scale(corrected_sc$CD27)
+corrected_sc$IgD <- scale(corrected_sc$IgD)
+corrected_sc$CD38 <- scale(corrected_sc$CD38)
+
 # convert the results of batch correction into a ff
 # to save samples as separate ff-s set separate_samples to True
 # output: ff_corrected or ff_corrected_sample_name
-save_as_ff(corrected, markers)
-save_as_ff(corrected, markers, separate_samples = T)
+save_as_ff(corrected_sc, markers)
+save_as_ff(corrected_sc, markers, separate_samples = T)
 
 # alternatively, results can be saved as .fcs files as well
 # output: corrected.fcs or corrected_sample_name.fcs
-save_as_fcs(corrected, markers)
-save_as_fcs(corrected, markers, separate_samples = T)
+save_as_fcs(corrected_sc, markers)
+save_as_fcs(corrected_sc, markers, separate_samples = T)
 
 
 ###########################
